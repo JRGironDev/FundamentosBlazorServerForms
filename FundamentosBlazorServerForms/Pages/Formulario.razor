@@ -3,10 +3,47 @@
 <h3>Formulario</h3>
 
 <EditForm Model="producto" OnValidSubmit="ManejadorOnSubmit">
-    <InputText id="nommbre" @bind-Value="producto.Nombre" />
-    <InputText id="descripcion" @bind-Value="producto.Descripcion" />
+    <DataAnnotationsValidator />
+    <p>
+        <label>
+            Nombre:
+            <InputText id="nommbre" @bind-Value="producto.Nombre" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Descripción:
+            <InputText id="descripcion" @bind-Value="producto.Descripcion" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Cantidad:
+            <InputNumber id="cantidad" @bind-Value="producto.Cantidad" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Activo:
+            <InputCheckbox id="activo" @bind-Value="producto.Activo" />
+        </label>
+    </p>
+
     <button class="btn btn-success" type="submit">Enviar</button>
+
+    <ValidationSummary class="my-4"/>
 </EditForm>
+
+<hr />
+<h4>@resultado</h4>
+<br />
+<p>Nombre: @producto.Nombre</p>
+<p>Descripción: @producto.Descripcion</p>
+<p>Cantidad: @producto.Cantidad</p>
+<p>Activo: @producto.Activo</p>
 
 
 @code {
@@ -16,7 +53,9 @@
 
     private void ManejadorOnSubmit()
     {
-
+        resultado = $"{producto.Nombre} {producto.Descripcion}";
+        resultado = "Un nuevo producto ha sido creado";
+        producto = new Producto();
     }
 }
 
