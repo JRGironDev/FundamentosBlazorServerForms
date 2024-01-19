@@ -3,7 +3,9 @@
 <h3>Formulario</h3>
 
 <EditForm Model="producto" OnValidSubmit="ManejadorOnSubmit">
-
+    <InputText id="nommbre" @bind-Value="producto.Nombre" />
+    <InputText id="descripcion" @bind-Value="producto.Descripcion" />
+    <button class="btn btn-success" type="submit">Enviar</button>
 </EditForm>
 
 

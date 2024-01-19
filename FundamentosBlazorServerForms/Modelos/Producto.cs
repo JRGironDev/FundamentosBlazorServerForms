@@ -5,7 +5,7 @@ namespace FundamentosBlazorServerForms.Modelos
 	{
 		public string Nombre { get; set; }
 
-		public string Descripción { get; set; }
+		public string Descripcion { get; set; }
 	}
 }
 
