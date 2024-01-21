@@ -8,34 +8,81 @@
         @foreach (var item in items)
         {
             <option value="@item.Key">@item.Value</option>
-
         }
     </select>
+
+        @if (subItems.Count > 0)
+            {
+                <select @onchange="ManejadorSubItemsOnDropDown">
+                    @foreach (var subItem in subItems)
+                        {
+                        <option value="@subItem.Key">@subItem.Value</option>
+                        }
+                </select>
+            }
+        
 </EditForm>
 
 @code {
     private SelectorCascada selectorCascada = new SelectorCascada();
 
-    private Dictionary<int, string> items = new Dictionary<int, string>();
+        private Dictionary<int, string> items = new Dictionary<int, string>();
 
-    private Dictionary<int, string> subItems = new Dictionary<int, string>();
+        private Dictionary<int, string> subItems = new Dictionary<int, string>();
 
-    public CompSelectorCascada()
-    {
-        items.Add(1, "Ropa");
-        items.Add(1, "Electrónica");
-        items.Add(1, "Alimentación");
-    }
-
-    public void ManejadorItemsOnDropDown(ChangeEventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(e.Value.ToString()))
+        public CompSelectorCascada()
         {
-            selectorCascada.Selector1 = 0;
-            selectorCascada.Selector2 = 0;
-            subItems = new Dictionary<int, string>();
-            return;
+            items.Add(1, "Ropa");
+            items.Add(2, "Electrónica");
+            items.Add(3, "Alimentación");
+        }
+
+        public void ManejadorItemsOnDropDown(ChangeEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(e.Value.ToString()))
+            {
+                selectorCascada.Selector1 = 0;
+                selectorCascada.Selector2 = 0;
+                subItems = new Dictionary<int, string>();
+                return;
+            }
+
+            selectorCascada.Selector1 = int.Parse(e.Value.ToString());
+
+            switch (selectorCascada.Selector1)
+            {
+                case 1:
+                    subItems = new Dictionary<int, string>();
+                    subItems.Add(1, "Hombres");
+                    subItems.Add(2, "Mujeres");
+                    subItems.Add(3, "Niños");
+                    break;
+                case 2:
+                    subItems = new Dictionary<int, string>();
+                    subItems.Add(4, "Teléfonos");
+                    subItems.Add(5, "Laptos");
+                    subItems.Add(6, "Electrónica");
+                    break;
+                case 3:
+                    subItems = new Dictionary<int, string>();
+                    subItems.Add(7, "Frutas");
+                    subItems.Add(8, "Verduras");
+                    subItems.Add(9, "Carnes");
+                    break;
+                default:
+                    subItems = new Dictionary<int, string>();
+                    break;
+            }
+        }
+
+        public void ManejadorSubItemsOnDropDown(ChangeEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(e.Value.ToString()))
+            {
+                return;
+            }
+
+            selectorCascada.Selector2 = int.Parse(e.Value.ToString());
+
         }
     }
-}
-
