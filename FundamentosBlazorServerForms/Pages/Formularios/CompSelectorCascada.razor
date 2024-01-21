@@ -1,0 +1,41 @@
+﻿@page "/selector-cascada"
+
+<h3>Selector Cascada</h3>
+
+<EditForm Model="@selectorCascada">
+    <select @onchange="ManejadorItemsOnDropDown">
+        <option value="">--Seleccionar un item</option>
+        @foreach (var item in items)
+        {
+            <option value="@item.Key">@item.Value</option>
+
+        }
+    </select>
+</EditForm>
+
+@code {
+    private SelectorCascada selectorCascada = new SelectorCascada();
+
+    private Dictionary<int, string> items = new Dictionary<int, string>();
+
+    private Dictionary<int, string> subItems = new Dictionary<int, string>();
+
+    public CompSelectorCascada()
+    {
+        items.Add(1, "Ropa");
+        items.Add(1, "Electrónica");
+        items.Add(1, "Alimentación");
+    }
+
+    public void ManejadorItemsOnDropDown(ChangeEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.Value.ToString()))
+        {
+            selectorCascada.Selector1 = 0;
+            selectorCascada.Selector2 = 0;
+            subItems = new Dictionary<int, string>();
+            return;
+        }
+    }
+}
+

@@ -10,8 +10,10 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <None Remove="Modelos\" />
+    <None Remove="Pages\Formularios\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modelos\" />
+    <Folder Include="Pages\Formularios\" />
   </ItemGroup>
 </Project>

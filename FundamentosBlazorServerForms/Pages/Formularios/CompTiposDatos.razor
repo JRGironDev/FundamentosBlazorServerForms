@@ -1,0 +1,24 @@
+﻿@page "/tipos-datos"
+
+<h3>Tipos de Datos</h3>
+
+<EditForm Model="@tiposDatos" >
+    <InputText @bind-Value="@tiposDatos.PropString" class="me-5"/>
+    <InputText @bind-Value="@tiposDatos.PropPassword" type="password" class="me-5"/>
+    <InputNumber @bind-Value="@tiposDatos.PropEntero" class="me-5"/>
+    <InputNumber @bind-Value="@tiposDatos.PropDouble" class="me-5"/>
+    <InputCheckbox @bind-Value="@tiposDatos.PropBool" class="me-5"/>
+    <InputDate @bind-Value="@tiposDatos.PropFecha" class="me-5"/>
+    <InputSelect @bind-Value="@tiposDatos.PropListaDesplegable" class="me-5">
+        <option value="">--Seleccionar opción-- </option>
+        <option value="1">Opción 1</option>
+        <option value="2">Opción 2</option>
+        <option value="3">Opción 3</option>
+        <option value="4">Opción 4</option>
+    </InputSelect> />
+</EditForm>
+
+@code {
+    private TiposDatos tiposDatos = new TiposDatos();
+}
+
